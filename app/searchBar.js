@@ -50,20 +50,22 @@ async function apiProcess(search)
     .then(result => {
         const url = result.articles[0].url;
         const articles = result.articles;
-        const articleArray = new Array(result.length);
-        for(let i = 0; i < articles.length; i++){
-            articleArray[i] = {headline: articles.title, 
-                publisher: articles.source[1], 
-                url: articles.url, 
-                description: articles.description,
-                imageURL: articles.urlToImage, 
-                timePublished: articles.publishedAt, 
-                content: articles.content};
-        }
-        for(const article of articleArray){
-            console.log (article.headline);
-        }
+
+        // const articleArray = new Array(result.length);
+        // for(let i = 0; i < articles.length; i++){
+        //     articleArray[i] = {headline: articles.title, 
+        //         publisher: articles.source[1], 
+        //         url: articles.url, 
+        //         description: articles.description,
+        //         imageURL: articles.urlToImage, 
+        //         timePublished: articles.publishedAt, 
+        //         content: articles.content};
+        // }
+        // for(const article of articleArray){
+        //     console.log (article.headline);
+        // }
         console.log(url)
+        //
     })
 }
 function replaceSpaceToDash(inputString)
@@ -71,14 +73,14 @@ function replaceSpaceToDash(inputString)
     var cleanedString = inputString.replaceAll(" ", "-")
     return cleanedString
 }
-class Article{
-    constructor(headline,publisher, url, description, imageURL, timePublished, content ){
-        this.headline = headline;
-        this.publisher = publisher;
-        this.url = url;
-        this.description =description;
-        this.imageURL = imageURL;
-        this.timePublished = timePublished;
-        this.content = content;
-    }
-}
+// class Article{
+//     constructor(headline,publisher, url, description, imageURL, timePublished, content ){
+//         this.headline = headline;
+//         this.publisher = publisher;
+//         this.url = url;
+//         this.description =description;
+//         this.imageURL = imageURL;
+//         this.timePublished = timePublished;
+//         this.content = content;
+//     }
+// }
