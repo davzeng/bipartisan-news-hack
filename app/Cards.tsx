@@ -4,8 +4,7 @@ import {Card, CardHeader, CardBody, Image} from "@nextui-org/react";
 import { useState } from "react";
 
 
-
-export default function Cards() {
+export default function Cards({source}:{source:string}) {
     const [state, setState] = useState("");
 
   return (
@@ -19,7 +18,7 @@ export default function Cards() {
         <Image
           alt="Card background"
           className="object-cover rounded-xl"
-          src="https://i.imgur.com/BWHdjUE.jpeg"
+          src={source}
           width={270}
         />
       </CardBody>
