@@ -2,7 +2,7 @@
 import React from "react";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue} from "@nextui-org/react";
 
-const rows = [
+var rows = [
   {
     key: "1",
     name: "Israel-Hamas War Rages",
@@ -43,6 +43,14 @@ const columns = [
     label: "PROVIDER",
   },
 ];
+
+export function UpdateTables(value:Array<Array<string>>){
+  for(var i = 0; i < 4; i++){
+    rows[i].name = value[i][0];
+    rows[i].role = value[i][1];
+    rows[i].status = value[i][2];
+  }
+}
 
 export default function Tables() {
   return (
