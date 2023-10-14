@@ -5,6 +5,7 @@ import Cards from './Cards.tsx';
 import CardTest from './CardTest.tsx';
 import SearchBar from './searchBar.js';
 import DateTabs from './Tabs.tsx';
+import SplitCards from './SplitCards.tsx';
 
 export default function Home() {
   return (
