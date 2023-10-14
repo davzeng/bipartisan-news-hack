@@ -42,31 +42,53 @@ async function apiProcess(search)
 {
     console.log(search)
     var cleanSearch = replaceSpaceToDash(search)
-    console.log('https://newsapi.org/v2/everything?q=' + cleanSearch + '&apiKey=9b46092d28c54b809c780b840f85657c')
-    await fetch('https://newsapi.org/v2/everything?q=' + cleanSearch + '&apiKey=9b46092d28c54b809c780b840f85657c')
+    var CNN = makeSearch(cleanSearch, "bbc.co.uk");
+    var Fox = makeSearch(cleanSearch, 'foxnews.com');
+    var techcrunch = makeSearch(cleanSearch, 'techcrunch.com');
+    
+    console.log(CNN)
+    await fetch(CNN)
     .then(response => {
         return response.json()
     })
     .then(result => {
-        const url = result.articles[0].url;
-        const articles = result.articles;
+       // const url = result.articles[0].url;
 
-        // const articleArray = new Array(result.length);
-        // for(let i = 0; i < articles.length; i++){
-        //     articleArray[i] = {headline: articles.title, 
-        //         publisher: articles.source[1], 
-        //         url: articles.url, 
-        //         description: articles.description,
-        //         imageURL: articles.urlToImage, 
-        //         timePublished: articles.publishedAt, 
-        //         content: articles.content};
-        // }
-        // for(const article of articleArray){
-        //     console.log (article.headline);
-        // }
-        console.log(url)
+       const articles = result.articles;
+        if (articles && articles.length > 0 && articles[0].url) {
+            console.log(articles[0].url)
+            // Process and use data from Fox News
+          } else {
+            console.log("No articles or missing 'url' property in the response");
+          }
         //
     })
+    // console.log(Fox)
+    // await fetch(Fox)
+    // .then(response => {
+    //     return response.json()
+    // })
+    // .then(result => {
+    //     const url = result.articles[0].url;
+    //     const articles = result.articles;
+    //     console.log(url)
+    //     //
+    // })
+    // console.log(techcrunch)
+    // await fetch(techcrunch)
+    // .then(response => {
+    //     return response.json()
+    // })
+    // .then(result => {
+    //     const url = result.articles[0].url;
+    //     const articles = result.articles;
+    //     console.log(url)
+    //     //
+    // })
+}
+function makeSearch(cleanSearch, publisher){
+    var link  = 'https://newsapi.org/v2/everything?q=' + cleanSearch + '&domains='+publisher+'&apiKey=9b46092d28c54b809c780b840f85657c';
+    return link;
 }
 function replaceSpaceToDash(inputString)
 {
