@@ -29,6 +29,7 @@ const SearchBar = () => {
       </div>
   );
 };
+
 export default SearchBar;
 function removePunctuationAndSeparateWords(inputString) {
     // Use a regular expression to match and remove punctuation
