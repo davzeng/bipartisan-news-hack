@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
-  apiKey: "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",
+  apiKey: "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",
   dangerouslyAllowBrowser: true 
 });
 
