@@ -1,9 +1,8 @@
 'use client'
-import SearchBar from './SearchBar.tsx';
-import SplitCards from './SplitCards.tsx';
-import Tables from './Tables.tsx';
 import React, { useState } from 'react';
-
+import SearchBar from './SearchBar';
+import SplitCards from './SplitCards';
+import Tables from './Tables';
 function populate(arr:Array<Array<string>>){
   for(var i = 0; i < 6; i++){
     if(arr[i] == null)

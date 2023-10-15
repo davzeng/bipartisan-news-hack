@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 
 export default function SearchBar({setArticles}:{setArticles:Function}) {
-    
     const [query, setQuery] = useState("");
     return (
         <div className="w-full max-w-xl flex mx-auto p-20 text-xl">
@@ -53,7 +52,7 @@ export default function SearchBar({setArticles}:{setArticles:Function}) {
     }
 
     async function makeSearch(cleanSearch: string, publisher: string){
-        var link  = 'https://newsapi.org/v2/everything?q=' + cleanSearch + '&domains='+publisher+'&apiKey=d43ea76edd2942beb8cb31003c9306f5';
+        var link  = 'https://newsapi.org/v2/everything?q=' + cleanSearch + '&domains='+publisher+'&apiKey=5a62864d4dea4cc7806ea2023ee13c53';
         return fetch(link)
         .then(response => {
             return response.json()
@@ -100,7 +99,6 @@ export default function SearchBar({setArticles}:{setArticles:Function}) {
               cnn[j][1] = temp;
             }
           }
-      
           for(var j=i; j>0; j--){
             if(Compare(fox[j][1], fox[j-1][1])){
               var temp = fox[j-1][1];
@@ -108,16 +106,16 @@ export default function SearchBar({setArticles}:{setArticles:Function}) {
               fox[j][1] = temp;
             }
           }
-          //clean times
-          for(var i = 0; i < 3; i++){
+        }
+        //clean times;
+        for(var i = 0; i < 3; i++){
             cnn[i][1] = Clean(cnn[i][1]);
             fox[i][1] = Clean(fox[i][1]);
             
             list[i*2] = cnn[i];
             list[i*2 + 1] = fox[i];
-          }
-      
         }
+      
         return list;
     }
 
@@ -126,39 +124,39 @@ export default function SearchBar({setArticles}:{setArticles:Function}) {
         var oneSplit = one.split("-");
         var twoSplit = two.split("-");
         if(oneSplit[0].localeCompare(twoSplit[0]) == 1){
-        return true;
+            return true;
         }
         else if(oneSplit[0].localeCompare(twoSplit[0]) == -1){
-        return false;
+            return false;
         }
 
         if(oneSplit[1].localeCompare(twoSplit[1]) == 1){
-        return true;
+            return true;
         }
         else if(oneSplit[1].localeCompare(twoSplit[1]) == -1){
-        return false;
+            return false;
         }
 
         if(oneSplit[2].localeCompare(twoSplit[2]) == 1){
-        return true;
+            return true;
         }
         return false;
     }
 
     function Clean(time:String){
         var split = time.split("-");
-        const currentDate = new Date();
+        const currentDate = new Date(2023, 10, 15, 10, 10, 10, 0);
         var year = currentDate.getFullYear();
         var month = currentDate.getMonth();
-        var day = currentDate.getDay();
+        var day = currentDate.getDate();
         if(!(year.toString() === split[0])){
-          return "" + (parseInt(split[0])-year) + " years ago. " + time.substring(0,10);
+          return "" + (year-parseInt(split[0])) + " years ago:  " + time.substring(0,10);
         }
         if(!(month.toString() === split[1])){
-          return "" + (parseInt(split[1])-month) + " months ago. " + time.substring(0,10);
+          return "" + (month-parseInt(split[1])) + " months ago:  " + time.substring(0,10);
         }
         if(!(day.toString() === split[2].substring(0,2))){
-          return "" + (parseInt(split[2].substring(0,2))-day) + " days ago. " + time.substring(0,10);
+          return "" + (day-parseInt(split[2].substring(0,2))) + " days ago:  " + time.substring(0,10);
         }
         return "Today"
       }
