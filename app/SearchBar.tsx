@@ -12,22 +12,32 @@ export default function SearchBar({setArticles}:{setArticles:Function}) {
     const [context, setContext]=useState("AI generated context may take a minute or so to appear after a search.");
     return (
         <div>
-            <div className="w-full max-w-xl flex mx-auto p-20 text-xl">
+            <div className="w-full max-w-xl flex mx-auto p-20 text-xl ">
                 <input
                     type="text"
                     className="w-full placeholder-gray-400 text-gray-900 p-4"
                     placeholder="Search"
                     onChange={change}
-                    value={query}
+                    value={query}    
+                    style={{borderRadius: "10px"}}                
                 />
                 <button 
                 className="bg-white p-4"
-                onClick={search}>🔍
+                onClick={search}
+                style={{borderRadius: "10px"}}>🔍
+                
                 </button>
             </div>
             <h1>AI Generated Context my be inaccurate. Consider reading deeper into the topics you find here.</h1>
             <br></br>
-            <textarea rows={30} cols={100} style={{maxHeight:"200px", minHeight:"200px", resize:"none", color: "grey"}} readOnly = {true} value = {context}></textarea>
+            <textarea rows={30} cols={100} 
+                style={{
+                display:"flex",
+                maxHeight:"200px",  
+                resize:"none", 
+                color: "grey", 
+                borderRadius: "5px"}} 
+                readOnly = {true} value = {context}></textarea>
             <br></br>
         </div>
     );

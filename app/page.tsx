@@ -9,7 +9,7 @@ export default function Home() {
   populate(articles);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24" style={{ backgroundColor: '#5A5A5A' }}>
+    <main className="flex min-h-screen flex-col items-center justify-between p-24" style={{ background: "linear-gradient(to left top, blue, red)" }}>
       <h1 style={{  
                 color: "white",
                 fontSize: "72px",
