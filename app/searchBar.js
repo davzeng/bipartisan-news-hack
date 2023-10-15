@@ -42,13 +42,21 @@ async function apiProcess(search)
 {
     console.log(search)
     var cleanSearch = replaceSpaceToDash(search)
-    makeSearch(cleanSearch, "cnn.com");
-    makeSearch(cleanSearch, 'foxnews.com');
+    const cnn = await makeSearch(cleanSearch, "cnn.com");
+    const fox = await makeSearch(cleanSearch, 'foxnews.com');
+    if (cnn) {
+        for (const element of cnn) {
+            console.log(element[0]);
+        }
+    } else {
+        console.log('No data retrieved from CNN');
+    }
+   // console.log(arr.length)
     //makeSearch(cleanSearch, 'techcrunch.com');
 }
 async function makeSearch(cleanSearch, publisher){
     var link  = 'https://newsapi.org/v2/everything?q=' + cleanSearch + '&domains='+publisher+'&apiKey=9b46092d28c54b809c780b840f85657c';
-    await fetch(link)
+    return fetch(link)
     .then(response => {
         return response.json()
     })
@@ -60,8 +68,10 @@ async function makeSearch(cleanSearch, publisher){
             //title, time, site, author, image-link, page-link    
             var newspages = [];
             for(let i = 0; i < articles.length && i < 3; i++){
-                newspages[i] = [articles[i].title, cleanTime(articles[i].time), articles[i].source.name, articles[i].author, articles[i].urlToImage, articles[i].url];
+                newspages[i] = [articles[i].title, cleanTime(articles[i].publishedAt), articles[i].source.name, articles[i].author, articles[i].urlToImage, articles[i].url];
             }
+
+    
             console.log(articles[0].url);
             return newspages;
             // Process and use data from 
@@ -79,14 +89,3 @@ function replaceSpaceToDash(inputString)
     var cleanedString = inputString.replaceAll(" ", "-")
     return cleanedString
 }
-// class Article{
-//     constructor(headline,publisher, url, description, imageURL, timePublished, content ){
-//         this.headline = headline;
-//         this.publisher = publisher;
-//         this.url = url;
-//         this.description =description;
-//         this.imageURL = imageURL;
-//         this.timePublished = timePublished;
-//         this.content = content;
-//     }
-// }
