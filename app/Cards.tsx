@@ -5,7 +5,6 @@ import { useState } from "react";
 
 
 export default function Cards({source}:{source:string}) {
-    const [state, setState] = useState("");
 
   return (
     <Card className="py-4">

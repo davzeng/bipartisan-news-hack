@@ -1,7 +1,27 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useReducer, useState, useSyncExternalStore } from 'react';
 import Cards from './Cards';
 import { useForceUpdate } from 'framer-motion';
+
+let cardListeners: (() => void)[] = [];
+function useCardData() {
+  function subscribe(onStoreChange: () => void) {
+    console.log('subscribe called')
+    function unsub() {
+        cardListeners = cardListeners.filter(el => el !== onStoreChange);
+    }
+
+    cardListeners.push(onStoreChange);
+
+    return unsub;
+  }
+
+  function getSnapshot() {
+    return articles;
+  }
+
+  return useSyncExternalStore(subscribe, getSnapshot);
+}
 
 var link = "https://i.imgur.com/BWHdjUE.jpeg"
 
@@ -17,10 +37,17 @@ export function UpdateCards(value:Array<Array<string>>){
         articles[i][2] = value[i][4];
         articles[i][3] = value[i][5];
     }
-    console.log(articles);
+    const newArticles = new Array<Array<string>>(6);
+    for(var i = 0; i < 6; i++){
+        newArticles[i] = articles[i];
+    }
+    articles = newArticles  as any;
+    cardListeners.forEach(listener => listener())
 }
 
 export default function SplitCards() {
+    const articles = useCardData();
+
     return (
         <div style={{  
             display: "grid",  
