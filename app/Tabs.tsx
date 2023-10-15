@@ -13,7 +13,6 @@ export default function DateTabs({source}:{source:Array<Array<string>>}) {
     sourceAppended.push([(i*6).toString()]);
     tabs.push({id: i, name: keyNames[i][1], tab: <Card><Tables source = {sourceAppended}></Tables> </Card>
     });
-    console.log(tabs);
 }
 
   return (

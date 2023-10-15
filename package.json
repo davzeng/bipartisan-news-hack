@@ -10,9 +10,14 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.1.13",
-    "newsapi": "^2.4.1",
+    "axios": "^1.5.1",
+    "body-parse": "^0.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
     "framer-motion": "^10.16.4",
+    "newsapi": "^2.4.1",
     "next": "13.5.4",
+    "openai": "^4.12.1",
     "react": "^18",
     "react-dom": "^18"
   },

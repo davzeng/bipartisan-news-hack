@@ -1,21 +1,34 @@
 'use client'
 import React, { useState } from 'react';
+import OpenAI from 'openai';
+
+const openai = new OpenAI({
+  apiKey: "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",
+  dangerouslyAllowBrowser: true 
+});
 
 export default function SearchBar({setArticles}:{setArticles:Function}) {
     const [query, setQuery] = useState("");
+    const [context, setContext]=useState("AI generated context may take a minute or so to appear after a search.");
     return (
-        <div className="w-full max-w-xl flex mx-auto p-20 text-xl">
-            <input
-                type="text"
-                className="w-full placeholder-gray-400 text-gray-900 p-4"
-                placeholder="Search"
-                onChange={change}
-                value={query}
-            />
-            <button 
-              className="bg-white p-4"
-              onClick={search}>🔍
-            </button>
+        <div>
+            <div className="w-full max-w-xl flex mx-auto p-20 text-xl">
+                <input
+                    type="text"
+                    className="w-full placeholder-gray-400 text-gray-900 p-4"
+                    placeholder="Search"
+                    onChange={change}
+                    value={query}
+                />
+                <button 
+                className="bg-white p-4"
+                onClick={search}>🔍
+                </button>
+            </div>
+            <h1>AI Generated Context my be inaccurate. Consider reading deeper into the topics you find here.</h1>
+            <br></br>
+            <textarea rows={30} cols={100} style={{maxHeight:"200px", minHeight:"200px", resize:"none"}} readOnly = {true} value = {context}></textarea>
+            <br></br>
         </div>
     );
     
@@ -41,6 +54,16 @@ export default function SearchBar({setArticles}:{setArticles:Function}) {
             console.log(fox);
             console.log(list);
             setArticles(list);
+
+            const completion = await openai.chat.completions.create({
+                messages: [{ role: "user", content: generatePrompt(cleanSearch) }],
+                model: "gpt-3.5-turbo",
+            });
+            console.log(completion);
+            var content = completion.choices[0].message.content;
+            if(content){
+                setContext(content);
+            }
         }
         else{
             console.log('No data retrieved from CNN or Fox');
@@ -157,4 +180,9 @@ export default function SearchBar({setArticles}:{setArticles:Function}) {
         }
         return "Today:  " + time.substring(0,10);
       }
+}
+
+function generatePrompt(search: string) {
+    console.log("this was ran");
+    return `Write a summary of the discourse surrounding ${search} over the years`;
 }
