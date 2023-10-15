@@ -16,6 +16,7 @@ var articles = [["Irael-Hamas-War Rages On", "10 minutes ago", "CNN", ""],
   ["Israel Prepares Ground Assault", "17 hours ago", "Reuters"],
   ["Why Israel Must Reconsider...", "23 hours ago", "NYT"]];
 */
+
 const articles = [
   ["ISRAEL - HAMAS WAR UPDATES", "10 minutes ago", "CNN", "By Kathleen Magramo", "https://i.imgur.com/BWHdjUE.jpeg", "https://www.cnn.com/middleeast/live-news/israel-news-hamas-war-10-14-23/index.html"],
   ["ISRAEL - HAMAS WAR UPDATES", "10 minutes ago", "CNN", "By Kathleen Magramo", "https://i.imgur.com/BWHdjUE.jpeg", "https://www.cnn.com/middleeast/live-news/israel-news-hamas-war-10-14-23/index.html"],
