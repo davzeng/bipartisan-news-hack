@@ -11,9 +11,10 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24" style={{ background: "linear-gradient(to left top, blue, red)" }}>
       <h1 style={{  
-                color: "white",
-                fontSize: "72px",
-                textAlign: "center"
+                color: "rgb(255,215,0)",
+                fontSize: "85px",
+                textAlign: "center",
+                fontFamily: "Times New Roman"
             }}>Event Horizon</h1>
       <SearchBar setArticles={setArticles}/>
       <DateTabs source={articles}></DateTabs>
