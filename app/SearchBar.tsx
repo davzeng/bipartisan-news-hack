@@ -27,7 +27,7 @@ export default function SearchBar({setArticles}:{setArticles:Function}) {
             </div>
             <h1>AI Generated Context my be inaccurate. Consider reading deeper into the topics you find here.</h1>
             <br></br>
-            <textarea rows={30} cols={100} style={{maxHeight:"200px", minHeight:"200px", resize:"none"}} readOnly = {true} value = {context}></textarea>
+            <textarea rows={30} cols={100} style={{maxHeight:"200px", minHeight:"200px", resize:"none", color: "grey"}} readOnly = {true} value = {context}></textarea>
             <br></br>
         </div>
     );

@@ -21,13 +21,13 @@ export default function SplitCards({source}:{source:Array<Array<string>>}) {
             gridTemplateColumns: "1fr 50px 1fr"  
           }}> 
             <h1 style={{  
-                color: "blue",
+                color: "rgb(0, 4, 133)",
                 fontSize: "50px",
                 textAlign: "center"
             }}>Left</h1>
             <div></div>
             <h1 style={{  
-                color: "red",
+                color: "rgb(133, 0, 0)",
                 fontSize: "50px",
                 textAlign: "center"
              }}>Right</h1>
