@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import Cards from './Cards';
+import { useForceUpdate } from 'framer-motion';
 
 var link = "https://i.imgur.com/BWHdjUE.jpeg"
 
@@ -16,6 +17,7 @@ export function UpdateCards(value:Array<Array<string>>){
         articles[i][2] = value[i][4];
         articles[i][3] = value[i][5];
     }
+    console.log(articles);
 }
 
 export default function SplitCards() {

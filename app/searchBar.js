@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react';
+import { SearchUpdate } from './page';
 
 const SearchBar = () => {
 
@@ -51,6 +52,7 @@ async function apiProcess(search)
     } else {
         console.log('No data retrieved from CNN');
     }
+    SearchUpdate(cnn,fox);
    // console.log(arr.length)
     //makeSearch(cleanSearch, 'techcrunch.com');
 }
