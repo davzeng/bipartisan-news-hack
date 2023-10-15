@@ -32,23 +32,19 @@ export default function SearchBar({setArticles}:{setArticles:Function}) {
         var cleanSearch = replaceSpaceToDash(search)
         const cnn = await makeSearch(cleanSearch, "cnn.com");
         const fox = await makeSearch(cleanSearch, 'foxnews.com');
-        
-        if (cnn) {
-            for (const element of cnn) {
-            }
-        } else {
-            console.log('No data retrieved from CNN');
-        }
         var list = null
+
         if(cnn != null && fox != null)
         {
             list = compileArticles(cnn, fox);
+            console.log(cnn);
+            console.log(fox);
+            console.log(list);
+            setArticles(list);
         }
-        console.log(cnn);
-        console.log(fox);
-        console.log(list);
-        setArticles(list);
-        //SearchUpdate(cnn,fox);
+        else{
+            console.log('No data retrieved from CNN or Fox');
+        }
     }
 
     async function makeSearch(cleanSearch: string, publisher: string){
