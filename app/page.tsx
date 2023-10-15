@@ -2,21 +2,28 @@
 import React, { useState } from 'react';
 import SearchBar from './SearchBar';
 import SplitCards from './SplitCards';
-import Tables from './Tables';
+import DateTabs from './Tabs';
+
+export default function Home() {
+  const [articles, setArticles] = useState(new Array<Array<string>>(4));
+  populate(articles);
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-between p-24" style={{ backgroundColor: '#5A5A5A' }}>
+      <h1 style={{  
+                color: "white",
+                fontSize: "72px",
+                textAlign: "center"
+            }}>A Bipartisan (not)Hack</h1>
+      <SearchBar setArticles={setArticles}/>
+      <DateTabs source={articles}></DateTabs>
+      <span>&nbsp;&nbsp;</span>
+      <SplitCards source={articles}></SplitCards>
+    </main>
+  )
+}
+
 function populate(arr:Array<Array<string>>){
-  /*
-  for(var i = 0; i < 6; i++){
-    if(arr[i] == null)
-    {
-      arr[i] = new Array<string>(6);
-      arr[i][0] = "ISRAEL - HAMAS WAR UPDATES";
-      arr[i][1] = "10 minutes ago";
-      arr[i][2] = "CNN";
-      arr[i][3] = "By Kathleen Magramo";
-      arr[i][4] = "https://i.imgur.com/BWHdjUE.jpeg";
-      arr[i][5] = "https://www.cnn.com/middleeast/live-news/israel-news-hamas-war-10-14-23/index.html";
-    }
-  }*/
   if(arr[0] == null)
   {
     arr[0] = new Array<string>(6);
@@ -51,39 +58,5 @@ function populate(arr:Array<Array<string>>){
     arr[3][4] = "https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2023/10/156/88/Hamas-survivors.jpg?ve=1&tl=1";
     arr[3][5] = "https://www.foxnews.com/world/israeli-survivors-of-hamas-terror-attack-recount-harrowing-brutality-heroism";
 
-    arr[4] = new Array<string>(6);
-    arr[4][0] = "";
-    arr[4][1] = "";
-    arr[4][2] = "";
-    arr[4][3] = "";
-    arr[4][4] = "";
-    arr[4][5] = "";
-
-    arr[5] = new Array<string>(6);
-    arr[5][0] = "";
-    arr[5][1] = "";
-    arr[5][2] = "";
-    arr[5][3] = "";
-    arr[5][4] = "";
-    arr[5][5] = "";
   }
-}
-
-export default function Home() {
-  const [articles, setArticles] = useState(new Array<Array<string>>(6));
-  populate(articles);
-
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24" style={{ backgroundColor: '#5A5A5A' }}>
-      <h1 style={{  
-                color: "white",
-                fontSize: "72px",
-                textAlign: "center"
-            }}>A Bipartisan (not)Hack</h1>
-      <SearchBar setArticles={setArticles}/>
-      <Tables source={articles}></Tables>
-      <span>&nbsp;&nbsp;</span>
-      <SplitCards source={articles}></SplitCards>
-    </main>
-  )
 }

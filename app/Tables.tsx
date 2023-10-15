@@ -19,19 +19,13 @@ const columns = [
 
 export default function Tables({source}:{source:Array<Array<string>>}) {
   
-  var rows = [
-  { key: "1", name: "", role: "", status: "",},
-  { key: "2", name: "", role: "", status: "",},
-  { key: "3", name: "", role: "", status: "",},
-  { key: "4", name: "", role: "", status: "",},
-  { key: "5", name: "", role: "", status: "",},
-  { key: "6", name: "", role: "", status: "",}
-  ];
+  var index = parseInt(source[source.length-1][0]);
+  var links:Array<string> = [];
+  var rows = [];
 
-  for(var i = 0; i < 6; i++){
-    rows[i].name = source[i][0];
-    rows[i].role = source[i][1];
-    rows[i].status = source[i][2];
+  for(var i = 0; i < Math.min(source.length-1-index,6); i++){
+    rows.push({key: i+1, name: source[i+index][0], role: source[i+index][1], status: source[i+index][2]})
+    links.push(source[i+index][5]);
   }
   return (
     <Table aria-label="Example table with dynamic content">
@@ -40,8 +34,8 @@ export default function Tables({source}:{source:Array<Array<string>>}) {
       </TableHeader>
       <TableBody items={rows}>
         {(item) => (
-          <TableRow key={item.key}>
-            {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
+          <TableRow key={item.key}> 
+            {(columnKey) => <TableCell>{<a href={links[item.key-1]} target="_blank">{getKeyValue(item, columnKey)}</a>}</TableCell>}
           </TableRow>
         )}
       </TableBody>

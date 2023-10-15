@@ -29,7 +29,7 @@ export default function SearchBar({setArticles}:{setArticles:Function}) {
 
     async function apiProcess(search: string, setArticles:Function)
     {
-        var cleanSearch = replaceSpaceToDash(search)
+        var cleanSearch = replaceSpaceToDash(search);
         const cnn = await makeSearch(cleanSearch, "cnn.com");
         const fox = await makeSearch(cleanSearch, 'foxnews.com');
         var list = null
@@ -60,7 +60,7 @@ export default function SearchBar({setArticles}:{setArticles:Function}) {
             if (articles && articles.length > 0 && articles[0].url) {
                 //title, time, site, author, image-link, page-link    
                 var newspages = [];
-                for(let i = 0; i < articles.length && i < 3; i++){
+                for(let i = 0; i < articles.length && i < 9; i++){
                     newspages[i] = [articles[i].title, articles[i].publishedAt, articles[i].source.name, articles[i].author, articles[i].urlToImage, articles[i].url];
                 }
     
@@ -81,13 +81,14 @@ export default function SearchBar({setArticles}:{setArticles:Function}) {
     }
 
     function compileArticles(cnn:Array<Array<any>>, fox:Array<Array<any>>){
-        var list = new Array<Array<string>>(6);
+        var length = Math.min(cnn.length, fox.length);
+        var list = new Array<Array<string>>(length*2);
         for(var i = 0; i < 6; i++){
             list[i] = new Array<string>(6);
         }
         const currentDate = new Date();
         //orders everything
-        for(var i = 1; i < 3; i++){
+        for(var i = 1; i < length; i++){
           for(var j=i; j>0; j--){
             if(Compare(cnn[j][1], cnn[j-1][1])){
               var temp = cnn[j-1][1];
@@ -104,7 +105,7 @@ export default function SearchBar({setArticles}:{setArticles:Function}) {
           }
         }
         //clean times;
-        for(var i = 0; i < 3; i++){
+        for(var i = 0; i < length; i++){
             cnn[i][1] = Clean(cnn[i][1]);
             fox[i][1] = Clean(fox[i][1]);
             
