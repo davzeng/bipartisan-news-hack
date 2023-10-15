@@ -14,7 +14,7 @@ export default function Home() {
                 color: "white",
                 fontSize: "72px",
                 textAlign: "center"
-            }}>A Bipartisan (not)Hack</h1>
+            }}>Bipartisan Hack</h1>
       <SearchBar setArticles={setArticles}/>
       <DateTabs source={articles}></DateTabs>
       <span>&nbsp;&nbsp;</span>
