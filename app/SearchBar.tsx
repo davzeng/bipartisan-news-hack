@@ -81,7 +81,7 @@ export default function SearchBar({setArticles}:{setArticles:Function}) {
     }
 
     async function makeSearch(cleanSearch: string, publisher: string){
-        var link  = 'https://newsapi.org/v2/everything?q=' + cleanSearch + '&domains='+publisher+'&apiKey=5a62864d4dea4cc7806ea2023ee13c53';
+        var link  = 'https://newsapi.org/v2/everything?q=' + cleanSearch + '&domains='+publisher+'&apiKey=53c7c13f592b4d7a9ef5ca3d50d27984';
         return fetch(link)
         .then(response => {
             return response.json()
