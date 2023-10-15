@@ -150,14 +150,14 @@ export default function SearchBar({setArticles}:{setArticles:Function}) {
         var month = currentDate.getMonth();
         var day = currentDate.getDate();
         if(!(year.toString() === split[0])){
-          return "" + (year-parseInt(split[0])) + " years ago:  " + time.substring(0,10);
+          return "" + (year-parseInt(split[0])) + " year(s) ago:  " + time.substring(0,10);
         }
         if(!(month.toString() === split[1])){
-          return "" + (month-parseInt(split[1])) + " months ago:  " + time.substring(0,10);
+          return "" + (month-parseInt(split[1])) + " month(s) ago:  " + time.substring(0,10);
         }
         if(!(day.toString() === split[2].substring(0,2))){
-          return "" + (day-parseInt(split[2].substring(0,2))) + " days ago:  " + time.substring(0,10);
+          return "" + (day-parseInt(split[2].substring(0,2))) + " day(s) ago:  " + time.substring(0,10);
         }
-        return "Today"
+        return "Today:  " + time.substring(0,10);
       }
 }
