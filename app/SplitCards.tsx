@@ -1,19 +1,24 @@
 'use client'
 import React from 'react';
 import Cards from './Cards';
-import { Style } from 'util';
 
 //var link = "https://i.imgur.com/BWHdjUE.jpeg"
 
 export default function SplitCards({source}:{source:Array<Array<string>>}) {
 
+    var cardList = [];
+    for(var i = 0; i < source.length/2; i++){
+        cardList.push({id: 3*i, card: <Cards source={source[i*2]}></Cards>});
+        cardList.push({id: 3*i+1, card: <div></div>});
+        cardList.push({id: 3*i+2, card: <Cards source={source[i*2+1]}></Cards>});
+    }
     
     return (
         <div style={{  
             display: "grid",  
             justifyContent: "space-below",
             rowGap: "20px",
-            gridTemplateColumns: "1fr 60px 1fr"  
+            gridTemplateColumns: "1fr 50px 1fr"  
           }}> 
             <h1 style={{  
                 color: "blue",
@@ -27,17 +32,9 @@ export default function SplitCards({source}:{source:Array<Array<string>>}) {
                 textAlign: "center"
              }}>Right</h1>
 
-            <Cards source={source[0]}></Cards>
-            <div></div>
-            <Cards source={source[1]}></Cards>
-
-            <Cards source={source[2]}></Cards>
-            <div></div>
-            <Cards source={source[3]}></Cards>
-
-            <Cards source={source[4]}></Cards>
-            <div></div>
-            <Cards source={source[5]}></Cards>
+            {cardList.map(item => (
+                <div key={item.id}>{item.card}</div>
+            ))}
         </div> 
     );
 }
