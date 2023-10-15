@@ -57,7 +57,7 @@ async function apiProcess(search)
     //makeSearch(cleanSearch, 'techcrunch.com');
 }
 async function makeSearch(cleanSearch, publisher){
-    var link  = 'https://newsapi.org/v2/everything?q=' + cleanSearch + '&domains='+publisher+'&apiKey=9b46092d28c54b809c780b840f85657c';
+    var link  = 'https://newsapi.org/v2/everything?q=' + cleanSearch + '&domains='+publisher+'&apiKey=d43ea76edd2942beb8cb31003c9306f5';
     return fetch(link)
     .then(response => {
         return response.json()
